@@ -3,55 +3,125 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FebTokenizer - Understand AI Agents & Tokens</title>
+    <title>FebTokenizer - AI Agent Exploration</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700;900&display=swap">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>FebTokenizer</h1>
-            <p class="subtitle">Understand AI Agents, Tokens & Context Windows</p>
-        </header>
-        
-        <!-- PDF Viewer Section -->
-        <div class="section pdf-viewer-section">
-            <h2>Agents - Getting Started</h2>
-            <p>View the original PDF document, one page at a time.</p>
-            
-            <div class="pdf-container">
-                <div class="pdf-controls">
-                    <button id="prev-page" class="pdf-nav-button">Previous Page</button>
-                    <span id="page-info">Page <span id="current-page">1</span> of <span id="total-pages">?</span></span>
-                    <button id="next-page" class="pdf-nav-button">Next Page</button>
-                </div>
-                <div class="pdf-frame-container">
-                    <canvas id="pdf-canvas"></canvas>
-                </div>
+    <!-- Cursor follower -->
+    <div class="cursor-follower"></div>
+    
+    <!-- Page loader -->
+    <div class="page-loader">
+        <div class="loader-content">
+            <div class="loader-logo">FebTokenizer</div>
+            <div class="loader-bar"></div>
+        </div>
+    </div>
+    
+    <!-- Navigation -->
+    <nav class="main-nav">
+        <div class="nav-container">
+            <div class="nav-logo">FebTokenizer</div>
+            <div class="nav-links">
+                <a href="#pdf-viewer" class="nav-link">PDF</a>
+                <a href="#ai-agent" class="nav-link">AI Agent</a>
+                <a href="#token-counter" class="nav-link">Tokens</a>
+                <a href="#agent-memory" class="nav-link">Memory</a>
+                <a href="#mcp-section" class="nav-link">MCP</a>
+                <a href="#chat-display" class="nav-link">Chat</a>
+            </div>
+            <div class="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
             </div>
         </div>
-        
-        <div class="main-content">
-            <div class="section">
-                <h2>What is an AI Agent?</h2>
-                <p>An AI Agent is an autonomous system that uses LLMs (Large Language Models) to reason, 
-                   make decisions, and perform tasks by leveraging tools and maintaining context.</p>
-                <div class="agent-diagram">
+    </nav>
+    
+    <!-- Hero section -->
+    <section class="hero">
+        <div class="hero-bg">
+            <div class="hero-particles"></div>
+        </div>
+        <div class="hero-content">
+            <h1 class="glitch-text" data-text="FebTokenizer">FebTokenizer</h1>
+            <p class="hero-subtitle">Explore the world of AI agents, tokens, and context windows</p>
+            <div class="hero-buttons">
+                <a href="#pdf-viewer" class="btn btn-primary">Start Exploring</a>
+                <a href="#ai-agent" class="btn btn-outline">Learn More</a>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <span>Scroll</span>
+            <i class="fa-solid fa-chevron-down"></i>
+        </div>
+    </section>
+    
+    <main class="main-content">
+        <!-- PDF Viewer Section -->
+        <section id="pdf-viewer" class="section-container pdf-viewer-section" data-section="pdf-viewer">
+            <div class="section-bg">
+                <div class="floating-shape shape1"></div>
+                <div class="floating-shape shape2"></div>
+                <div class="floating-shape shape3"></div>
+            </div>
+            <div class="section-content">
+                <div class="section-header" data-aos="fade-up">
+                    <span class="section-number">01</span>
+                    <h2 class="section-title">Agents - Getting Started</h2>
+                    <p class="section-description">Explore the original PDF document, one page at a time.</p>
+                </div>
+                
+                <div class="pdf-container" data-aos="fade-up" data-aos-delay="200">
+                    <div class="pdf-controls">
+                        <button id="prev-page" class="pdf-nav-button"><i class="fa-solid fa-arrow-left"></i> Previous</button>
+                        <span id="page-info">Page <span id="current-page">1</span> of <span id="total-pages">?</span></span>
+                        <button id="next-page" class="pdf-nav-button">Next <i class="fa-solid fa-arrow-right"></i></button>
+                    </div>
+                    <div class="pdf-frame-container">
+                        <div class="pdf-frame-overlay"></div>
+                        <canvas id="pdf-canvas"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- AI Agent Section -->
+        <section id="ai-agent" class="section-container ai-agent-section" data-section="ai-agent">
+            <div class="section-bg">
+                <div class="floating-shape shape4"></div>
+                <div class="floating-shape shape5"></div>
+            </div>
+            <div class="section-content">
+                <div class="section-header" data-aos="fade-up">
+                    <span class="section-number">02</span>
+                    <h2 class="section-title">What is an AI Agent?</h2>
+                    <p class="section-description">An AI Agent is an autonomous system that uses LLMs (Large Language Models) to reason, make decisions, and perform tasks by leveraging tools and maintaining context.</p>
+                </div>
+                
+                <div class="agent-diagram" data-aos="fade-up" data-aos-delay="200">
                     <div class="agent-box">
-                        <h3>AI Agent Architecture</h3>
+                        <h3 class="agent-box-title">AI Agent Architecture</h3>
                         <div class="diagram">
-                            <div class="component llm">
+                            <div class="component llm" data-aos="zoom-in" data-aos-delay="300">
+                                <div class="component-icon"><i class="fa-solid fa-brain"></i></div>
                                 <h4>LLM (AI)</h4>
                                 <p>Core reasoning engine</p>
                             </div>
-                            <div class="component tools">
+                            <div class="component tools" data-aos="zoom-in" data-aos-delay="400">
+                                <div class="component-icon"><i class="fa-solid fa-screwdriver-wrench"></i></div>
                                 <h4>Tools</h4>
                                 <p>Email, Browser, SaaS Apps, etc.</p>
                             </div>
-                            <div class="component knowledge">
+                            <div class="component knowledge" data-aos="zoom-in" data-aos-delay="500">
+                                <div class="component-icon"><i class="fa-solid fa-database"></i></div>
                                 <h4>Knowledge</h4>
                                 <p>Context, memory, documents</p>
                             </div>
-                            <div class="component human">
+                            <div class="component human" data-aos="zoom-in" data-aos-delay="600">
+                                <div class="component-icon"><i class="fa-solid fa-user"></i></div>
                                 <h4>Human Oversight</h4>
                                 <p>Goals, taste, evaluation</p>
                             </div>
@@ -59,24 +129,39 @@
                     </div>
                 </div>
             </div>
+        </section>
 
-            <div class="section">
-                <h2>Token Counter & Visualizer</h2>
-                <p>AI models process text as "tokens" (roughly 4 characters per token). 
-                   Each model has a context window limit (e.g., 8K, 16K, 32K tokens).</p>
+        <!-- Token Counter Section -->
+        <section id="token-counter" class="section-container token-counter-section" data-section="token-counter">
+            <div class="section-bg">
+                <div class="floating-shape shape6"></div>
+                <div class="floating-shape shape7"></div>
+            </div>
+            <div class="section-content">
+                <div class="section-header" data-aos="fade-up">
+                    <span class="section-number">03</span>
+                    <h2 class="section-title">Token Counter & Visualizer</h2>
+                    <p class="section-description">AI models process text as "tokens" (roughly 4 characters per token). Each model has a context window limit (e.g., 8K, 16K, 32K tokens).</p>
+                </div>
                 
-                <div class="token-counter-container">
+                <div class="token-counter-container" data-aos="fade-up" data-aos-delay="200">
                     <div class="input-section">
-                        <h3>Input Text</h3>
+                        <h3 class="subsection-title">Input Text</h3>
                         <textarea id="input-text" placeholder="Type or paste your text here to see how many tokens it uses..."></textarea>
                         <div class="token-stats">
-                            <span>Tokens: <span id="token-count">0</span></span>
-                            <span>Characters: <span id="char-count">0</span></span>
+                            <div class="stat-item">
+                                <span class="stat-label">Tokens</span>
+                                <span class="stat-value" id="token-count">0</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">Characters</span>
+                                <span class="stat-value" id="char-count">0</span>
+                            </div>
                         </div>
                     </div>
                     
                     <div class="context-window">
-                        <h3>Context Window Visualization</h3>
+                        <h3 class="subsection-title">Context Window Visualization</h3>
                         <div class="model-selector">
                             <label for="model-select">Select Model:</label>
                             <select id="model-select">
@@ -91,25 +176,42 @@
                             <div id="context-fill"></div>
                             <div class="scale-marks"></div>
                         </div>
-                        <p id="window-status">0% of context window used</p>
+                        <p id="window-status" class="window-status">0% of context window used</p>
                     </div>
                 </div>
             </div>
+        </section>
 
-            <div class="section">
-                <h2>Agent Memory Simulator</h2>
-                <p>See how messages accumulate in an agent's memory (context window) and how older messages get "forgotten".</p>
+        <!-- Agent Memory Section -->
+        <section id="agent-memory" class="section-container agent-memory-section" data-section="agent-memory">
+            <div class="section-bg">
+                <div class="floating-shape shape8"></div>
+                <div class="floating-shape shape9"></div>
+            </div>
+            <div class="section-content">
+                <div class="section-header" data-aos="fade-up">
+                    <span class="section-number">04</span>
+                    <h2 class="section-title">Agent Memory Simulator</h2>
+                    <p class="section-description">See how messages accumulate in an agent's memory (context window) and how older messages get "forgotten".</p>
+                </div>
                 
-                <div class="agent-memory-container">
+                <div class="agent-memory-container" data-aos="fade-up" data-aos-delay="200">
                     <div class="chat-input">
                         <input type="text" id="chat-message" placeholder="Type a message to the agent...">
-                        <button id="send-message">Send</button>
+                        <button id="send-message"><i class="fa-solid fa-paper-plane"></i> Send</button>
                     </div>
                     
                     <div class="memory-visualization">
-                        <h3>Agent's Memory (Context Window)</h3>
-                        <div class="memory-meter">
-                            <div id="memory-fill"></div>
+                        <h3 class="subsection-title">Agent's Memory (Context Window)</h3>
+                        <div class="memory-meter-container">
+                            <div class="memory-meter">
+                                <div id="memory-fill"></div>
+                            </div>
+                            <div class="memory-labels">
+                                <span>0%</span>
+                                <span>50%</span>
+                                <span>100%</span>
+                            </div>
                         </div>
                         <div class="chat-history" id="chat-history">
                             <!-- Chat messages will be added here dynamically -->
@@ -117,52 +219,68 @@
                     </div>
                 </div>
             </div>
+        </section>
 
-            <!-- New section on MCP for building agents -->
-            <div class="section">
-                <h2>Building Agents with MCP</h2>
-                <p>The <strong>Model Context Protocol (MCP)</strong> is an open standard developed by Anthropic that enables AI agents to seamlessly connect with external data sources and tools.</p>
+        <!-- MCP Section -->
+        <section id="mcp-section" class="section-container mcp-section" data-section="mcp-section">
+            <div class="section-bg">
+                <div class="floating-shape shape10"></div>
+                <div class="floating-shape shape11"></div>
+            </div>
+            <div class="section-content">
+                <div class="section-header" data-aos="fade-up">
+                    <span class="section-number">05</span>
+                    <h2 class="section-title">Building Agents with MCP</h2>
+                    <p class="section-description">The <strong>Model Context Protocol (MCP)</strong> is an open standard developed by Anthropic that enables AI agents to seamlessly connect with external data sources and tools.</p>
+                </div>
                 
-                <div class="mcp-explanation">
-                    <h3>What is MCP?</h3>
+                <div class="mcp-explanation" data-aos="fade-up" data-aos-delay="200">
+                    <h3 class="subsection-title">What is MCP?</h3>
                     <p>MCP provides a standardized way for AI models to access and interact with:</p>
-                    <ul>
-                        <li>Content repositories and knowledge bases</li>
-                        <li>Business tools and applications</li>
-                        <li>Development environments and code repositories</li>
-                        <li>External APIs and services</li>
+                    <ul class="feature-list">
+                        <li><i class="fa-solid fa-database"></i> Content repositories and knowledge bases</li>
+                        <li><i class="fa-solid fa-briefcase"></i> Business tools and applications</li>
+                        <li><i class="fa-solid fa-code"></i> Development environments and code repositories</li>
+                        <li><i class="fa-solid fa-globe"></i> External APIs and services</li>
                     </ul>
                     
-                    <h3>MCP Architecture</h3>
+                    <h3 class="subsection-title">MCP Architecture</h3>
                     <div class="mcp-diagram">
-                        <div class="mcp-component client">
+                        <div class="mcp-component client" data-aos="fade-right" data-aos-delay="300">
+                            <div class="component-icon"><i class="fa-solid fa-laptop-code"></i></div>
                             <h4>MCP Client</h4>
                             <p>LLM applications like Claude</p>
                         </div>
-                        <div class="mcp-arrow">→</div>
-                        <div class="mcp-component protocol">
+                        <div class="mcp-arrow" data-aos="fade-in" data-aos-delay="400">→</div>
+                        <div class="mcp-component protocol" data-aos="fade-in" data-aos-delay="500">
+                            <div class="component-icon"><i class="fa-solid fa-exchange-alt"></i></div>
                             <h4>MCP Protocol</h4>
                             <p>Standardized communication</p>
                         </div>
-                        <div class="mcp-arrow">→</div>
-                        <div class="mcp-component server">
+                        <div class="mcp-arrow" data-aos="fade-in" data-aos-delay="600">→</div>
+                        <div class="mcp-component server" data-aos="fade-left" data-aos-delay="700">
+                            <div class="component-icon"><i class="fa-solid fa-server"></i></div>
                             <h4>MCP Server</h4>
                             <p>Interfaces with external tools</p>
                         </div>
                     </div>
                     
-                    <h3>Benefits of Using MCP</h3>
-                    <ul>
-                        <li><strong>Standardization:</strong> Common interface for all tool integrations</li>
-                        <li><strong>Flexibility:</strong> Switch between different LLM providers</li>
-                        <li><strong>Scalability:</strong> Add new tools without changing the core application</li>
-                        <li><strong>Better Responses:</strong> AI models can access relevant data directly</li>
+                    <h3 class="subsection-title">Benefits of Using MCP</h3>
+                    <ul class="feature-list benefits-list">
+                        <li data-aos="fade-up" data-aos-delay="300"><i class="fa-solid fa-check-circle"></i> <strong>Standardization:</strong> Common interface for all tool integrations</li>
+                        <li data-aos="fade-up" data-aos-delay="400"><i class="fa-solid fa-check-circle"></i> <strong>Flexibility:</strong> Switch between different LLM providers</li>
+                        <li data-aos="fade-up" data-aos-delay="500"><i class="fa-solid fa-check-circle"></i> <strong>Scalability:</strong> Add new tools without changing the core application</li>
+                        <li data-aos="fade-up" data-aos-delay="600"><i class="fa-solid fa-check-circle"></i> <strong>Better Responses:</strong> AI models can access relevant data directly</li>
                     </ul>
                 </div>
                 
-                <div class="mcp-example">
-                    <h3>MCP Implementation Example</h3>
+                <div class="mcp-example" data-aos="fade-up" data-aos-delay="200">
+                    <h3 class="subsection-title">MCP Implementation Example</h3>
                     <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-language">JavaScript</span>
+                            <button class="code-copy-btn"><i class="fa-regular fa-copy"></i></button>
+                        </div>
                         <pre><code>// Simple example of MCP integration in JavaScript
 const mcpClient = new McpClient({
   baseUrl: "https://api.example-mcp-server.com",
@@ -209,52 +327,85 @@ async function runAgent(userQuery) {
                     </div>
                 </div>
                 
-                <div class="mcp-resources">
-                    <h3>MCP Resources</h3>
-                    <ul>
-                        <li><a href="https://modelcontextprotocol.io/" target="_blank">Official MCP Documentation</a></li>
-                        <li><a href="https://github.com/modelcontextprotocol/docs" target="_blank">MCP Protocol Specification</a></li>
-                        <li><a href="https://github.com/lastmile-ai/mcp-agent" target="_blank">MCP Agent Library</a></li>
-                        <li><a href="https://www.anthropic.com/news/model-context-protocol" target="_blank">Anthropic's MCP Introduction</a></li>
-                    </ul>
+                <div class="mcp-resources" data-aos="fade-up" data-aos-delay="200">
+                    <h3 class="subsection-title">MCP Resources</h3>
+                    <div class="resource-cards">
+                        <a href="https://modelcontextprotocol.io/" target="_blank" class="resource-card" data-aos="fade-up" data-aos-delay="300">
+                            <div class="resource-icon"><i class="fa-solid fa-book"></i></div>
+                            <h4>Official Documentation</h4>
+                            <p>Complete guide to MCP implementation</p>
+                        </a>
+                        <a href="https://github.com/modelcontextprotocol/docs" target="_blank" class="resource-card" data-aos="fade-up" data-aos-delay="400">
+                            <div class="resource-icon"><i class="fa-brands fa-github"></i></div>
+                            <h4>Protocol Specification</h4>
+                            <p>Technical details and standards</p>
+                        </a>
+                        <a href="https://github.com/lastmile-ai/mcp-agent" target="_blank" class="resource-card" data-aos="fade-up" data-aos-delay="500">
+                            <div class="resource-icon"><i class="fa-solid fa-code"></i></div>
+                            <h4>MCP Agent Library</h4>
+                            <p>Ready-to-use components and examples</p>
+                        </a>
+                        <a href="https://www.anthropic.com/news/model-context-protocol" target="_blank" class="resource-card" data-aos="fade-up" data-aos-delay="600">
+                            <div class="resource-icon"><i class="fa-solid fa-newspaper"></i></div>
+                            <h4>Anthropic's Introduction</h4>
+                            <p>Overview and vision behind MCP</p>
+                        </a>
+                    </div>
                 </div>
                 
-                <div class="mcp-interactive">
-                    <h3>Try it yourself</h3>
+                <div class="mcp-interactive" data-aos="fade-up" data-aos-delay="200">
+                    <h3 class="subsection-title">Try it yourself</h3>
                     <p>Experiment with MCP concepts in this simple demonstration:</p>
                     <div class="mcp-demo-container">
                         <div class="mcp-demo-control">
-                            <button id="mcp-demo-button" class="mcp-demo-button">Run MCP Tool Demo</button>
+                            <button id="mcp-demo-button" class="mcp-demo-button"><i class="fa-solid fa-play"></i> Run MCP Tool Demo</button>
                         </div>
                         <div class="mcp-demo-result" id="mcp-demo-result">
-                            <p>Click the button to see an MCP tool call simulation.</p>
+                            <p class="demo-placeholder">Click the button to see an MCP tool call simulation.</p>
                         </div>
                     </div>
                 </div>
             </div>
-            
-            <!-- New Cursor-style Chat Display Section -->
-            <div class="section chat-display-section">
-                <h2>Cursor Chat Composer</h2>
-                <p>View how AI agents and humans interact in a code editor environment.</p>
+        </section>
+
+        <!-- Chat Display Section -->
+        <section id="chat-display" class="section-container chat-display-section" data-section="chat-display">
+            <div class="section-bg">
+                <div class="floating-shape shape12"></div>
+                <div class="floating-shape shape13"></div>
+            </div>
+            <div class="section-content">
+                <div class="section-header" data-aos="fade-up">
+                    <span class="section-number">06</span>
+                    <h2 class="section-title">Cursor Chat Composer</h2>
+                    <p class="section-description">View how AI agents and humans interact in a code editor environment.</p>
+                </div>
                 
-                <div class="conversation-summary-container">
-                    <h3>Conversation Summary</h3>
+                <div class="conversation-summary-container" data-aos="fade-up" data-aos-delay="200">
+                    <h3 class="subsection-title">Conversation Summary</h3>
                     <div class="conversation-summary">
                         <p>In this conversation, the user requested assistance with creating a web application that demonstrates key concepts about AI agents, tokens, and context windows from the "Agents - Getting Started" PDF. The AI assistant helped by:</p>
-                        <ol>
-                            <li>Summarizing the PDF content about AI agents and their capabilities</li>
-                            <li>Building a token counter and visualizer to understand context windows</li>
-                            <li>Creating an agent memory simulator to show how conversations work</li>
-                            <li>Adding information about the Model Context Protocol (MCP) for building advanced agents</li>
-                            <li>Implementing a PDF viewer to display the original document</li>
-                            <li>Suggesting free hosting options including Netlify and GitHub Pages</li>
+                        <ol class="summary-list">
+                            <li data-aos="fade-up" data-aos-delay="300">Summarizing the PDF content about AI agents and their capabilities</li>
+                            <li data-aos="fade-up" data-aos-delay="350">Building a token counter and visualizer to understand context windows</li>
+                            <li data-aos="fade-up" data-aos-delay="400">Creating an agent memory simulator to show how conversations work</li>
+                            <li data-aos="fade-up" data-aos-delay="450">Adding information about the Model Context Protocol (MCP) for building advanced agents</li>
+                            <li data-aos="fade-up" data-aos-delay="500">Implementing a PDF viewer to display the original document</li>
+                            <li data-aos="fade-up" data-aos-delay="550">Suggesting free hosting options including Netlify and GitHub Pages</li>
                         </ol>
                         <p>The resulting application serves as an interactive educational tool for understanding AI agent concepts.</p>
                     </div>
                 </div>
                 
-                <div class="cursor-chat-container">
+                <div class="cursor-chat-container" data-aos="fade-up" data-aos-delay="300">
+                    <div class="cursor-chat-header">
+                        <div class="chat-window-controls">
+                            <span class="control close"></span>
+                            <span class="control minimize"></span>
+                            <span class="control maximize"></span>
+                        </div>
+                        <div class="chat-window-title">Cursor Chat</div>
+                    </div>
                     <div class="cursor-chat">
                         <div class="chat-message-container user">
                             <div class="chat-avatar">U</div>
@@ -390,19 +541,83 @@ async function runAgent(userQuery) {
                                 <div class="chat-text">At the bottom of the page I want you to display the chat in composer, rendered in a nice format like it is in cursor. Also, include a summary of the chat between the user and the response provided.</div>
                             </div>
                         </div>
+                        
+                        <div class="chat-message-container assistant">
+                            <div class="chat-avatar">AI</div>
+                            <div class="chat-content">
+                                <div class="chat-header">Assistant</div>
+                                <div class="chat-text">
+                                    <p>I've added a stylish Cursor-like chat display at the bottom of the application along with a conversation summary. The implementation includes:</p>
+                                    
+                                    <ul>
+                                        <li>Dark-themed chat interface that resembles the Cursor IDE</li>
+                                        <li>Distinctive styling for user and assistant messages</li>
+                                        <li>Proper formatting for code blocks, lists, and paragraphs</li>
+                                        <li>A clear conversation summary highlighting key milestones</li>
+                                        <li>Responsive design that works across all devices</li>
+                                    </ul>
+                                    
+                                    <p>This provides a complete view of our development journey and serves as a reference for the application's features.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="chat-message-container user">
+                            <div class="chat-avatar">U</div>
+                            <div class="chat-content">
+                                <div class="chat-header">User</div>
+                                <div class="chat-text">Now I want you to redesign it in a way that it could be nominated for an awwwards nomination for the daily design award.</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
+        </section>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <div class="logo-text">FebTokenizer</div>
+                <p class="footer-tagline">Understanding AI agents and context windows</p>
+            </div>
+            <div class="footer-nav">
+                <div class="footer-nav-column">
+                    <h3>Explore</h3>
+                    <ul>
+                        <li><a href="#pdf-viewer">PDF Viewer</a></li>
+                        <li><a href="#ai-agent">AI Agent</a></li>
+                        <li><a href="#token-counter">Token Counter</a></li>
+                    </ul>
+                </div>
+                <div class="footer-nav-column">
+                    <h3>Learn</h3>
+                    <ul>
+                        <li><a href="#agent-memory">Agent Memory</a></li>
+                        <li><a href="#mcp-section">MCP</a></li>
+                        <li><a href="#chat-display">Chat Display</a></li>
+                    </ul>
+                </div>
+                <div class="footer-nav-column">
+                    <h3>Connect</h3>
+                    <ul>
+                        <li><a href="https://github.com" target="_blank">GitHub</a></li>
+                        <li><a href="https://modelcontextprotocol.io/" target="_blank">MCP</a></li>
+                        <li><a href="https://www.anthropic.com/" target="_blank">Anthropic</a></li>
+                    </ul>
+                </div>
+            </div>
         </div>
-
-        <footer>
+        <div class="footer-bottom">
             <p>Inspired by "Agents - Getting Started" by Chris Boden, Peregian Digital Hub</p>
-            <p>Learn more about AI agents, context windows, and knowledge workers</p>
-        </footer>
-    </div>
+            <p>Designed for modern exploration of AI concepts</p>
+        </div>
+    </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/gpt-tokenizer@2.1.1/dist/cl100k_base.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script src="app.js"></script>
 </body>
 </html> 

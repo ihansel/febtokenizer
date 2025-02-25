@@ -1,5 +1,201 @@
 // Wait for the DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', function() {
+    // Initialize AOS (Animate On Scroll)
+    AOS.init({
+        duration: 800,
+        easing: 'ease-out',
+        once: false,
+        mirror: true
+    });
+    
+    // Initialize page loader
+    const pageLoader = document.querySelector('.page-loader');
+    window.addEventListener('load', function() {
+        setTimeout(function() {
+            pageLoader.classList.add('loaded');
+        }, 1000);
+    });
+    
+    // Cursor follower
+    const cursorFollower = document.querySelector('.cursor-follower');
+    document.addEventListener('mousemove', function(e) {
+        gsapIfAvailable(cursorFollower, {
+            left: e.clientX,
+            top: e.clientY,
+            duration: 0.1
+        });
+    });
+    
+    // Change cursor size on hoverable elements
+    const hoverableElements = document.querySelectorAll('a, button, .btn, .component, .resource-card, .mcp-component');
+    hoverableElements.forEach(element => {
+        element.addEventListener('mouseenter', function() {
+            gsapIfAvailable(cursorFollower, {
+                width: '40px',
+                height: '40px',
+                backgroundColor: 'rgba(0, 206, 201, 0.2)',
+                duration: 0.3
+            });
+        });
+        
+        element.addEventListener('mouseleave', function() {
+            gsapIfAvailable(cursorFollower, {
+                width: '20px',
+                height: '20px',
+                backgroundColor: 'rgba(108, 92, 231, 0.3)',
+                duration: 0.3
+            });
+        });
+    });
+    
+    // Implement GSAP if available
+    function gsapIfAvailable(element, props) {
+        if (!element) return;
+        
+        if (window.gsap) {
+            gsap.to(element, props);
+        } else {
+            // Fallback if GSAP is not available
+            Object.keys(props).forEach(key => {
+                if (key !== 'duration' && key !== 'ease') {
+                    element.style[key] = props[key];
+                }
+            });
+        }
+    }
+    
+    // Navigation scroll effect
+    const mainNav = document.querySelector('.main-nav');
+    const navLinks = document.querySelectorAll('.nav-link');
+    const sections = document.querySelectorAll('.section-container');
+    
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 50) {
+            mainNav.classList.add('scrolled');
+        } else {
+            mainNav.classList.remove('scrolled');
+        }
+        
+        // Update active navigation link
+        let currentSection = '';
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.offsetHeight;
+            if (window.scrollY >= (sectionTop - 200)) {
+                currentSection = section.getAttribute('id');
+            }
+        });
+        
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href').substring(1) === currentSection) {
+                link.classList.add('active');
+            }
+        });
+    });
+    
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') return;
+            
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                window.scrollTo({
+                    top: targetElement.offsetTop - 100,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+    
+    // Mobile navigation toggle
+    const navToggle = document.querySelector('.nav-toggle');
+    const navLinksContainer = document.querySelector('.nav-links');
+    
+    if (navToggle) {
+        navToggle.addEventListener('click', function() {
+            navToggle.classList.toggle('active');
+            
+            if (navLinksContainer.style.display === 'flex') {
+                navLinksContainer.style.opacity = '0';
+                setTimeout(() => {
+                    navLinksContainer.style.display = 'none';
+                }, 300);
+            } else {
+                navLinksContainer.style.display = 'flex';
+                navLinksContainer.style.flexDirection = 'column';
+                navLinksContainer.style.position = 'absolute';
+                navLinksContainer.style.top = '100%';
+                navLinksContainer.style.left = '0';
+                navLinksContainer.style.width = '100%';
+                navLinksContainer.style.padding = '1rem';
+                navLinksContainer.style.backgroundColor = 'var(--menu-bg)';
+                navLinksContainer.style.backdropFilter = 'blur(10px)';
+                navLinksContainer.style.zIndex = '100';
+                
+                setTimeout(() => {
+                    navLinksContainer.style.opacity = '1';
+                }, 10);
+            }
+        });
+    }
+    
+    // Create particle effect for hero section
+    const heroParticles = document.querySelector('.hero-particles');
+    if (heroParticles) {
+        createParticles(heroParticles, 50);
+    }
+    
+    function createParticles(container, count) {
+        for (let i = 0; i < count; i++) {
+            const particle = document.createElement('div');
+            particle.classList.add('particle');
+            
+            const size = Math.random() * 5 + 1;
+            const posX = Math.random() * 100;
+            const posY = Math.random() * 100;
+            const animationDuration = Math.random() * 20 + 10;
+            const animationDelay = Math.random() * 10;
+            const opacity = Math.random() * 0.5 + 0.1;
+            
+            particle.style.width = `${size}px`;
+            particle.style.height = `${size}px`;
+            particle.style.left = `${posX}%`;
+            particle.style.top = `${posY}%`;
+            particle.style.opacity = opacity;
+            particle.style.animation = `float ${animationDuration}s ease-in-out ${animationDelay}s infinite alternate`;
+            particle.style.position = 'absolute';
+            particle.style.borderRadius = '50%';
+            particle.style.backgroundColor = '#fff';
+            
+            container.appendChild(particle);
+        }
+    }
+    
+    // Copy code to clipboard functionality
+    const copyButtons = document.querySelectorAll('.code-copy-btn');
+    copyButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const codeBlock = this.closest('.code-block').querySelector('code');
+            const textToCopy = codeBlock.textContent;
+            
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                // Change icon temporarily
+                const originalIcon = this.innerHTML;
+                this.innerHTML = '<i class="fa-solid fa-check"></i>';
+                
+                setTimeout(() => {
+                    this.innerHTML = originalIcon;
+                }, 2000);
+            }).catch(err => {
+                console.error('Could not copy text: ', err);
+            });
+        });
+    });
+    
     // PDF Viewer Implementation
     const pdfPath = "Agents - Getting Started.pdf";
     const canvas = document.getElementById('pdf-canvas');
@@ -15,101 +211,104 @@ document.addEventListener('DOMContentLoaded', function() {
     let scale = 1.5;
     
     // Initialize PDF.js
-    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
-    
-    // Load the PDF
-    function loadPDF() {
-        pdfjsLib.getDocument(pdfPath).promise.then(function(pdf) {
-            pdfDoc = pdf;
-            totalPages.textContent = pdf.numPages;
+    if (window.pdfjsLib) {
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+        
+        // Load the PDF
+        function loadPDF() {
+            pdfjsLib.getDocument(pdfPath).promise.then(function(pdf) {
+                pdfDoc = pdf;
+                totalPages.textContent = pdf.numPages;
+                
+                // Initial page render
+                renderPage(pageNum);
+                
+                // Update button states
+                updateButtonStates();
+            }).catch(function(error) {
+                console.error("Error loading PDF:", error);
+                const pdfContainer = document.querySelector('.pdf-frame-container');
+                pdfContainer.innerHTML = '<div class="pdf-error">Error loading PDF. Please make sure the file exists and try again.</div>';
+            });
+        }
+        
+        // Render a specific page
+        function renderPage(num) {
+            pageRendering = true;
             
-            // Initial page render
-            renderPage(pageNum);
+            // Update current page display
+            currentPage.textContent = num;
+            
+            // Get the page
+            pdfDoc.getPage(num).then(function(page) {
+                // Calculate scale based on container width
+                const viewport = page.getViewport({ scale: scale });
+                canvas.height = viewport.height;
+                canvas.width = viewport.width;
+                
+                const renderContext = {
+                    canvasContext: canvas.getContext('2d'),
+                    viewport: viewport
+                };
+                
+                const renderTask = page.render(renderContext);
+                
+                // Wait for rendering to finish
+                renderTask.promise.then(function() {
+                    pageRendering = false;
+                    
+                    // Check if there's a pending page
+                    if (pageNumPending !== null) {
+                        renderPage(pageNumPending);
+                        pageNumPending = null;
+                    }
+                });
+            });
             
             // Update button states
             updateButtonStates();
-        }).catch(function(error) {
-            console.error("Error loading PDF:", error);
-            const pdfContainer = document.querySelector('.pdf-frame-container');
-            pdfContainer.innerHTML = '<div class="pdf-error">Error loading PDF. Please make sure the file exists and try again.</div>';
-        });
-    }
-    
-    // Render a specific page
-    function renderPage(num) {
-        pageRendering = true;
-        
-        // Update current page display
-        currentPage.textContent = num;
-        
-        // Get the page
-        pdfDoc.getPage(num).then(function(page) {
-            const viewport = page.getViewport({ scale: scale });
-            canvas.height = viewport.height;
-            canvas.width = viewport.width;
-            
-            const renderContext = {
-                canvasContext: canvas.getContext('2d'),
-                viewport: viewport
-            };
-            
-            const renderTask = page.render(renderContext);
-            
-            // Wait for rendering to finish
-            renderTask.promise.then(function() {
-                pageRendering = false;
-                
-                // Check if there's a pending page
-                if (pageNumPending !== null) {
-                    renderPage(pageNumPending);
-                    pageNumPending = null;
-                }
-            });
-        });
-        
-        // Update button states
-        updateButtonStates();
-    }
-    
-    // Go to previous page
-    function prevPage() {
-        if (pageNum <= 1) {
-            return;
         }
-        pageNum--;
-        queueRenderPage(pageNum);
-    }
-    
-    // Go to next page
-    function nextPage() {
-        if (pageNum >= pdfDoc.numPages) {
-            return;
+        
+        // Go to previous page
+        function prevPage() {
+            if (pageNum <= 1) {
+                return;
+            }
+            pageNum--;
+            queueRenderPage(pageNum);
         }
-        pageNum++;
-        queueRenderPage(pageNum);
-    }
-    
-    // Queue a page for rendering
-    function queueRenderPage(num) {
-        if (pageRendering) {
-            pageNumPending = num;
-        } else {
-            renderPage(num);
+        
+        // Go to next page
+        function nextPage() {
+            if (pageNum >= pdfDoc.numPages) {
+                return;
+            }
+            pageNum++;
+            queueRenderPage(pageNum);
         }
+        
+        // Queue a page for rendering
+        function queueRenderPage(num) {
+            if (pageRendering) {
+                pageNumPending = num;
+            } else {
+                renderPage(num);
+            }
+        }
+        
+        // Update button states based on current page
+        function updateButtonStates() {
+            prevPageButton.disabled = pageNum <= 1;
+            nextPageButton.disabled = pdfDoc && pageNum >= pdfDoc.numPages;
+        }
+        
+        // Event listeners for page navigation
+        prevPageButton.addEventListener('click', prevPage);
+        nextPageButton.addEventListener('click', nextPage);
+        
+        // Initialize PDF viewer
+        loadPDF();
     }
-    
-    // Update button states based on current page
-    function updateButtonStates() {
-        prevPageButton.disabled = pageNum <= 1;
-        nextPageButton.disabled = pdfDoc && pageNum >= pdfDoc.numPages;
-    }
-    
-    // Event listeners for page navigation
-    prevPageButton.addEventListener('click', prevPage);
-    nextPageButton.addEventListener('click', nextPage);
-    
-    // Initialize PDF viewer
-    loadPDF();
     
     // Get references to DOM elements
     const inputText = document.getElementById('input-text');
@@ -165,14 +364,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         contextFill.style.width = `${percentage}%`;
         
-        // Update the color based on percentage (green to yellow to red)
-        if (percentage < 50) {
-            contextFill.style.backgroundColor = '#4caf50'; // Green
-        } else if (percentage < 80) {
-            contextFill.style.backgroundColor = '#ff9800'; // Orange
-        } else {
-            contextFill.style.backgroundColor = '#f44336'; // Red
-        }
+        // Update the color based on percentage (gradient already applied in CSS)
         
         // Update status text
         windowStatus.textContent = `${percentage.toFixed(1)}% of context window used (${tokens} / ${contextWindow} tokens)`;
@@ -187,15 +379,6 @@ document.addEventListener('DOMContentLoaded', function() {
         // Update the memory meter
         const percentage = Math.min(100, (memoryTokens / MAX_MEMORY_TOKENS) * 100);
         memoryFill.style.width = `${percentage}%`;
-        
-        // Update color based on fill level
-        if (percentage < 50) {
-            memoryFill.style.backgroundColor = '#4a6bff'; // Blue
-        } else if (percentage < 80) {
-            memoryFill.style.backgroundColor = '#ff9800'; // Orange
-        } else {
-            memoryFill.style.backgroundColor = '#f44336'; // Red
-        }
         
         // Update the message styling based on their "memory status"
         messages.forEach((msg, index) => {
@@ -295,33 +478,42 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Event listeners
-    inputText.addEventListener('input', updateTokenCounter);
-    modelSelect.addEventListener('change', updateTokenCounter);
+    if (inputText) {
+        inputText.addEventListener('input', updateTokenCounter);
+    }
     
-    sendMessageButton.addEventListener('click', function() {
-        const message = chatMessage.value.trim();
-        if (message) {
-            // Add user message
-            addMessage(message, true);
-            
-            // Clear input
-            chatMessage.value = '';
-            
-            // Simulate agent thinking
-            setTimeout(() => {
-                // Generate and add agent response
-                const response = generateAgentResponse(message);
-                addMessage(response, false);
-            }, 1000);
-        }
-    });
+    if (modelSelect) {
+        modelSelect.addEventListener('change', updateTokenCounter);
+    }
+    
+    if (sendMessageButton) {
+        sendMessageButton.addEventListener('click', function() {
+            const message = chatMessage.value.trim();
+            if (message) {
+                // Add user message
+                addMessage(message, true);
+                
+                // Clear input
+                chatMessage.value = '';
+                
+                // Simulate agent thinking
+                setTimeout(() => {
+                    // Generate and add agent response
+                    const response = generateAgentResponse(message);
+                    addMessage(response, false);
+                }, 1000);
+            }
+        });
+    }
     
     // Also listen for Enter key in chat input
-    chatMessage.addEventListener('keypress', function(e) {
-        if (e.key === 'Enter') {
-            sendMessageButton.click();
-        }
-    });
+    if (chatMessage) {
+        chatMessage.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendMessageButton.click();
+            }
+        });
+    }
     
     // Try to load the tokenizer
     try {
@@ -341,11 +533,18 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Initialize visualizations
-    updateTokenCounter();
-    updateMemoryVisualization();
+    if (inputText) {
+        updateTokenCounter();
+    }
+    
+    if (memoryFill) {
+        updateMemoryVisualization();
+    }
     
     // Add initial agent message
-    addMessage("Hello! I'm an AI agent that can help you understand how AI agents work. I have access to tools and can maintain context in my memory. What would you like to know?", false);
+    if (chatHistory) {
+        addMessage("Hello! I'm an AI agent that can help you understand how AI agents work. I have access to tools and can maintain context in my memory. What would you like to know?", false);
+    }
 
     // MCP Demo Implementation
     const mcpDemoButton = document.getElementById('mcp-demo-button');
@@ -374,23 +573,25 @@ document.addEventListener('DOMContentLoaded', function() {
     let mcpDemoRunning = false;
     let currentStepIndex = 0;
     
-    mcpDemoButton.addEventListener('click', function() {
-        // Reset if already completed or start new demo
-        if (!mcpDemoRunning || currentStepIndex >= mcpDemoSteps.length) {
-            // Clear previous demo
-            mcpDemoResult.innerHTML = '';
-            currentStepIndex = 0;
-            mcpDemoRunning = true;
-            mcpDemoButton.textContent = 'Running Demo...';
-            mcpDemoButton.disabled = true;
-            
-            // Start the demo sequence
-            runNextMcpDemoStep();
-        }
-    });
+    if (mcpDemoButton) {
+        mcpDemoButton.addEventListener('click', function() {
+            // Reset if already completed or start new demo
+            if (!mcpDemoRunning || currentStepIndex >= mcpDemoSteps.length) {
+                // Clear previous demo
+                mcpDemoResult.innerHTML = '';
+                currentStepIndex = 0;
+                mcpDemoRunning = true;
+                mcpDemoButton.textContent = 'Running Demo...';
+                mcpDemoButton.disabled = true;
+                
+                // Start the demo sequence
+                runNextMcpDemoStep();
+            }
+        });
+    }
     
     function runNextMcpDemoStep() {
-        if (currentStepIndex < mcpDemoSteps.length) {
+        if (currentStepIndex < mcpDemoSteps.length && mcpDemoResult) {
             const step = mcpDemoSteps[currentStepIndex];
             
             // Create and add step element with appropriate styling
@@ -402,7 +603,35 @@ document.addEventListener('DOMContentLoaded', function() {
                 stepElement.classList.add('tool-result');
             }
             
-            stepElement.textContent = step.content;
+            // Add step title based on type
+            const stepTitle = document.createElement('div');
+            stepTitle.classList.add('step-title');
+            let icon = '';
+            
+            switch (step.type) {
+                case 'prompt':
+                    icon = '<i class="fa-solid fa-comment"></i>';
+                    break;
+                case 'tool-call':
+                    icon = '<i class="fa-solid fa-code"></i>';
+                    break;
+                case 'tool-result':
+                    icon = '<i class="fa-solid fa-reply"></i>';
+                    break;
+                case 'response':
+                    icon = '<i class="fa-solid fa-robot"></i>';
+                    break;
+            }
+            
+            stepTitle.innerHTML = `${icon} <span>${step.type.charAt(0).toUpperCase() + step.type.slice(1)}</span>`;
+            
+            // Add step content
+            const stepContent = document.createElement('div');
+            stepContent.classList.add('step-content');
+            stepContent.textContent = step.content;
+            
+            stepElement.appendChild(stepTitle);
+            stepElement.appendChild(stepContent);
             mcpDemoResult.appendChild(stepElement);
             
             // Schedule next step with delay for visual effect
@@ -411,8 +640,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 setTimeout(runNextMcpDemoStep, 1500);
             } else {
                 // Demo completed
-                mcpDemoButton.textContent = 'Run MCP Tool Demo Again';
-                mcpDemoButton.disabled = false;
+                if (mcpDemoButton) {
+                    mcpDemoButton.innerHTML = '<i class="fa-solid fa-redo"></i> Run MCP Tool Demo Again';
+                    mcpDemoButton.disabled = false;
+                }
                 mcpDemoRunning = false;
             }
         }
