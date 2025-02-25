@@ -648,4 +648,4 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
     }
-}); 
+});
