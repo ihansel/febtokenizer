@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FebTokenizer - Understand AI Agents & Tokens</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>FebTokenizer</h1>
+            <p class="subtitle">Understand AI Agents, Tokens & Context Windows</p>
+        </header>
+        
+        <!-- PDF Viewer Section -->
+        <div class="section pdf-viewer-section">
+            <h2>Agents - Getting Started</h2>
+            <p>View the original PDF document, one page at a time.</p>
+            
+            <div class="pdf-container">
+                <div class="pdf-controls">
+                    <button id="prev-page" class="pdf-nav-button">Previous Page</button>
+                    <span id="page-info">Page <span id="current-page">1</span> of <span id="total-pages">?</span></span>
+                    <button id="next-page" class="pdf-nav-button">Next Page</button>
+                </div>
+                <div class="pdf-frame-container">
+                    <canvas id="pdf-canvas"></canvas>
+                </div>
+            </div>
+        </div>
+        
+        <div class="main-content">
+            <div class="section">
+                <h2>What is an AI Agent?</h2>
+                <p>An AI Agent is an autonomous system that uses LLMs (Large Language Models) to reason, 
+                   make decisions, and perform tasks by leveraging tools and maintaining context.</p>
+                <div class="agent-diagram">
+                    <div class="agent-box">
+                        <h3>AI Agent Architecture</h3>
+                        <div class="diagram">
+                            <div class="component llm">
+                                <h4>LLM (AI)</h4>
+                                <p>Core reasoning engine</p>
+                            </div>
+                            <div class="component tools">
+                                <h4>Tools</h4>
+                                <p>Email, Browser, SaaS Apps, etc.</p>
+                            </div>
+                            <div class="component knowledge">
+                                <h4>Knowledge</h4>
+                                <p>Context, memory, documents</p>
+                            </div>
+                            <div class="component human">
+                                <h4>Human Oversight</h4>
+                                <p>Goals, taste, evaluation</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Token Counter & Visualizer</h2>
+                <p>AI models process text as "tokens" (roughly 4 characters per token). 
+                   Each model has a context window limit (e.g., 8K, 16K, 32K tokens).</p>
+                
+                <div class="token-counter-container">
+                    <div class="input-section">
+                        <h3>Input Text</h3>
+                        <textarea id="input-text" placeholder="Type or paste your text here to see how many tokens it uses..."></textarea>
+                        <div class="token-stats">
+                            <span>Tokens: <span id="token-count">0</span></span>
+                            <span>Characters: <span id="char-count">0</span></span>
+                        </div>
+                    </div>
+                    
+                    <div class="context-window">
+                        <h3>Context Window Visualization</h3>
+                        <div class="model-selector">
+                            <label for="model-select">Select Model:</label>
+                            <select id="model-select">
+                                <option value="4000">GPT-3.5 (4K tokens)</option>
+                                <option value="8000" selected>GPT-4 (8K tokens)</option>
+                                <option value="16000">GPT-4 Turbo (16K tokens)</option>
+                                <option value="32000">Claude 3 Opus (32K tokens)</option>
+                                <option value="128000">Claude 3 Sonnet (128K tokens)</option>
+                            </select>
+                        </div>
+                        <div class="window-visualization">
+                            <div id="context-fill"></div>
+                            <div class="scale-marks"></div>
+                        </div>
+                        <p id="window-status">0% of context window used</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Agent Memory Simulator</h2>
+                <p>See how messages accumulate in an agent's memory (context window) and how older messages get "forgotten".</p>
+                
+                <div class="agent-memory-container">
+                    <div class="chat-input">
+                        <input type="text" id="chat-message" placeholder="Type a message to the agent...">
+                        <button id="send-message">Send</button>
+                    </div>
+                    
+                    <div class="memory-visualization">
+                        <h3>Agent's Memory (Context Window)</h3>
+                        <div class="memory-meter">
+                            <div id="memory-fill"></div>
+                        </div>
+                        <div class="chat-history" id="chat-history">
+                            <!-- Chat messages will be added here dynamically -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- New section on MCP for building agents -->
+            <div class="section">
+                <h2>Building Agents with MCP</h2>
+                <p>The <strong>Model Context Protocol (MCP)</strong> is an open standard developed by Anthropic that enables AI agents to seamlessly connect with external data sources and tools.</p>
+                
+                <div class="mcp-explanation">
+                    <h3>What is MCP?</h3>
+                    <p>MCP provides a standardized way for AI models to access and interact with:</p>
+                    <ul>
+                        <li>Content repositories and knowledge bases</li>
+                        <li>Business tools and applications</li>
+                        <li>Development environments and code repositories</li>
+                        <li>External APIs and services</li>
+                    </ul>
+                    
+                    <h3>MCP Architecture</h3>
+                    <div class="mcp-diagram">
+                        <div class="mcp-component client">
+                            <h4>MCP Client</h4>
+                            <p>LLM applications like Claude</p>
+                        </div>
+                        <div class="mcp-arrow">→</div>
+                        <div class="mcp-component protocol">
+                            <h4>MCP Protocol</h4>
+                            <p>Standardized communication</p>
+                        </div>
+                        <div class="mcp-arrow">→</div>
+                        <div class="mcp-component server">
+                            <h4>MCP Server</h4>
+                            <p>Interfaces with external tools</p>
+                        </div>
+                    </div>
+                    
+                    <h3>Benefits of Using MCP</h3>
+                    <ul>
+                        <li><strong>Standardization:</strong> Common interface for all tool integrations</li>
+                        <li><strong>Flexibility:</strong> Switch between different LLM providers</li>
+                        <li><strong>Scalability:</strong> Add new tools without changing the core application</li>
+                        <li><strong>Better Responses:</strong> AI models can access relevant data directly</li>
+                    </ul>
+                </div>
+                
+                <div class="mcp-example">
+                    <h3>MCP Implementation Example</h3>
+                    <div class="code-block">
+                        <pre><code>// Simple example of MCP integration in JavaScript
+const mcpClient = new McpClient({
+  baseUrl: "https://api.example-mcp-server.com",
+  apiKey: "your-api-key"
+});
+
+// Define a tool using MCP
+const searchTool = {
+  name: "search_documents",
+  description: "Search through company documents",
+  parameters: {
+    query: { type: "string", description: "Search query" },
+    limit: { type: "number", description: "Max results to return" }
+  }
+};
+
+// Agent that can use MCP tools
+async function runAgent(userQuery) {
+  const response = await anthropic.messages.create({
+    model: "claude-3-opus-20240229",
+    max_tokens: 1000,
+    messages: [
+      { role: "user", content: userQuery }
+    ],
+    tools: [searchTool],
+    tool_choice: "auto"
+  });
+  
+  // Handle tool calls if the model decides to use them
+  if (response.tool_calls && response.tool_calls.length > 0) {
+    const toolCall = response.tool_calls[0];
+    // Execute the tool call through MCP
+    const toolResult = await mcpClient.executeTool(
+      toolCall.name, 
+      JSON.parse(toolCall.arguments)
+    );
+    
+    // Continue the conversation with the tool results
+    return await continueConversation(response, toolResult);
+  }
+  
+  return response.content;
+}</code></pre>
+                    </div>
+                </div>
+                
+                <div class="mcp-resources">
+                    <h3>MCP Resources</h3>
+                    <ul>
+                        <li><a href="https://modelcontextprotocol.io/" target="_blank">Official MCP Documentation</a></li>
+                        <li><a href="https://github.com/modelcontextprotocol/docs" target="_blank">MCP Protocol Specification</a></li>
+                        <li><a href="https://github.com/lastmile-ai/mcp-agent" target="_blank">MCP Agent Library</a></li>
+                        <li><a href="https://www.anthropic.com/news/model-context-protocol" target="_blank">Anthropic's MCP Introduction</a></li>
+                    </ul>
+                </div>
+                
+                <div class="mcp-interactive">
+                    <h3>Try it yourself</h3>
+                    <p>Experiment with MCP concepts in this simple demonstration:</p>
+                    <div class="mcp-demo-container">
+                        <div class="mcp-demo-control">
+                            <button id="mcp-demo-button" class="mcp-demo-button">Run MCP Tool Demo</button>
+                        </div>
+                        <div class="mcp-demo-result" id="mcp-demo-result">
+                            <p>Click the button to see an MCP tool call simulation.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- New Cursor-style Chat Display Section -->
+            <div class="section chat-display-section">
+                <h2>Cursor Chat Composer</h2>
+                <p>View how AI agents and humans interact in a code editor environment.</p>
+                
+                <div class="conversation-summary-container">
+                    <h3>Conversation Summary</h3>
+                    <div class="conversation-summary">
+                        <p>In this conversation, the user requested assistance with creating a web application that demonstrates key concepts about AI agents, tokens, and context windows from the "Agents - Getting Started" PDF. The AI assistant helped by:</p>
+                        <ol>
+                            <li>Summarizing the PDF content about AI agents and their capabilities</li>
+                            <li>Building a token counter and visualizer to understand context windows</li>
+                            <li>Creating an agent memory simulator to show how conversations work</li>
+                            <li>Adding information about the Model Context Protocol (MCP) for building advanced agents</li>
+                            <li>Implementing a PDF viewer to display the original document</li>
+                            <li>Suggesting free hosting options including Netlify and GitHub Pages</li>
+                        </ol>
+                        <p>The resulting application serves as an interactive educational tool for understanding AI agent concepts.</p>
+                    </div>
+                </div>
+                
+                <div class="cursor-chat-container">
+                    <div class="cursor-chat">
+                        <div class="chat-message-container user">
+                            <div class="chat-avatar">U</div>
+                            <div class="chat-content">
+                                <div class="chat-header">User</div>
+                                <div class="chat-text">Read this and summarise the pdf. Write an app that demonstrates the main ideas</div>
+                            </div>
+                        </div>
+                        
+                        <div class="chat-message-container assistant">
+                            <div class="chat-avatar">AI</div>
+                            <div class="chat-content">
+                                <div class="chat-header">Assistant</div>
+                                <div class="chat-text">
+                                    <p>I've analyzed the "Agents - Getting Started" PDF and created a web application that demonstrates its key concepts.</p>
+                                    
+                                    <p>The PDF covers several important concepts about AI Agents:</p>
+                                    <ul>
+                                        <li>AI agents use LLMs as their core reasoning engine</li>
+                                        <li>They can access tools to interact with external systems</li>
+                                        <li>They maintain knowledge and context for complex tasks</li>
+                                        <li>Humans provide oversight, goals, and evaluation</li>
+                                    </ul>
+                                    
+                                    <p>I've built FebTokenizer with these features:</p>
+                                    <ol>
+                                        <li>AI Agent conceptual explanation with diagrams</li>
+                                        <li>Token Counter & Visualizer to understand context windows</li>
+                                        <li>Agent Memory Simulator showing how context accumulates</li>
+                                        <li>MCP (Model Context Protocol) explanation and examples</li>
+                                    </ol>
+                                    
+                                    <p>The app is built with HTML, CSS, and JavaScript with no external dependencies except for a tokenizer library.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="chat-message-container user">
+                            <div class="chat-avatar">U</div>
+                            <div class="chat-content">
+                                <div class="chat-header">User</div>
+                                <div class="chat-text">@web - Find some more resources on building agents in mcp and integrate into the app</div>
+                            </div>
+                        </div>
+                        
+                        <div class="chat-message-container assistant">
+                            <div class="chat-avatar">AI</div>
+                            <div class="chat-content">
+                                <div class="chat-header">Assistant</div>
+                                <div class="chat-text">
+                                    <p>I've researched MCP resources and enhanced the application with a new section dedicated to Model Context Protocol (MCP). The additions include:</p>
+                                    
+                                    <ul>
+                                        <li>Detailed explanation of what MCP is and how it works</li>
+                                        <li>Visual representation of the MCP architecture</li>
+                                        <li>JavaScript code examples for implementing MCP</li>
+                                        <li>Interactive demonstration of MCP tool calls</li>
+                                        <li>Links to official resources for further learning</li>
+                                    </ul>
+                                    
+                                    <p>This new section helps users understand how to build AI agents that can connect to external tools and data sources using the standardized MCP approach.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="chat-message-container user">
+                            <div class="chat-avatar">U</div>
+                            <div class="chat-content">
+                                <div class="chat-header">User</div>
+                                <div class="chat-text">Can you also embed the pdf in the web page at the top. I only want to see a single page at a time and be able to scroll through each page.</div>
+                            </div>
+                        </div>
+                        
+                        <div class="chat-message-container assistant">
+                            <div class="chat-avatar">AI</div>
+                            <div class="chat-content">
+                                <div class="chat-header">Assistant</div>
+                                <div class="chat-text">
+                                    <p>I've added a PDF viewer at the top of the application that allows viewing the "Agents - Getting Started" document one page at a time. The viewer includes:</p>
+                                    
+                                    <ul>
+                                        <li>Navigation controls with Previous/Next page buttons</li>
+                                        <li>Current page indicator showing which page you're on</li>
+                                        <li>Clean, centered display with appropriate scaling</li>
+                                        <li>Responsive design that works on different screen sizes</li>
+                                    </ul>
+                                    
+                                    <p>The PDF viewer uses Mozilla's PDF.js library for rendering and provides a seamless way to reference the original content while exploring the interactive sections below.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="chat-message-container user">
+                            <div class="chat-avatar">U</div>
+                            <div class="chat-content">
+                                <div class="chat-header">User</div>
+                                <div class="chat-text">I now want you to figure out the easiest way to host this on the web and give me instructions how to do it - I want to host for free.</div>
+                            </div>
+                        </div>
+                        
+                        <div class="chat-message-container assistant">
+                            <div class="chat-avatar">AI</div>
+                            <div class="chat-content">
+                                <div class="chat-header">Assistant</div>
+                                <div class="chat-text">
+                                    <p>I recommend two free hosting options:</p>
+                                    
+                                    <p><strong>Option 1: Netlify (Easiest)</strong></p>
+                                    <ol>
+                                        <li>Create a free account at Netlify.com</li>
+                                        <li>Simply drag and drop your entire project folder onto their dashboard</li>
+                                        <li>Get an instant URL like random-name-123456.netlify.app</li>
+                                        <li>Optionally set up a custom subdomain</li>
+                                    </ol>
+                                    
+                                    <p><strong>Option 2: GitHub Pages</strong></p>
+                                    <ol>
+                                        <li>Create a GitHub account and new repository</li>
+                                        <li>Upload your project files</li>
+                                        <li>Enable GitHub Pages in repository settings</li>
+                                        <li>Access your site at username.github.io/febtokenizer</li>
+                                    </ol>
+                                    
+                                    <p>Both options provide free hosting with SSL/HTTPS security and a global CDN for fast loading.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="chat-message-container user">
+                            <div class="chat-avatar">U</div>
+                            <div class="chat-content">
+                                <div class="chat-header">User</div>
+                                <div class="chat-text">At the bottom of the page I want you to display the chat in composer, rendered in a nice format like it is in cursor. Also, include a summary of the chat between the user and the response provided.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>Inspired by "Agents - Getting Started" by Chris Boden, Peregian Digital Hub</p>
+            <p>Learn more about AI agents, context windows, and knowledge workers</p>
+        </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/gpt-tokenizer@2.1.1/dist/cl100k_base.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html> 

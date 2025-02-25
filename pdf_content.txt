@@ -1,0 +1,731 @@
+Surfing the AI wave on the Sunshine Coast 
+
+
+Cohort Program Activities 
+Hub Members Weekly AI workshops, talks, builder sessions,  show & tell, 1:1 mentoring support 
+AI Startups Peer founder support, regular founder events, and best practice sharing via AI founder network 
+Digital Marketers Workshops & talks for upskilling via Reboot Noosa meetup group 
+Digital Creatives AI Residencies, workshops & talks for upskilling via Sunshine Coast Screen Collective meetups 
+Technologists AI Residencies, Hackathons, Workshops & talks for upskilling via Coding from Beach network 
+Non Exec Directors AI Workshops via the Hub’s Investor network 
+Teenagers AI Cadetship program for grade 9-11 students in term 3 
+Kids Inventing and building with AI via weekly Hub Inventors Club for kids aged 10-15 
+SME Leaders Workshops, 1:1 mentoring & Proof of concept development support, for SME leaders, 
+Knowledge Professionals Workshops & talks for AI upskilling 
+Local government AI upskilling workshops for key Council employees 
+Noosa Community AI workshops, helpdesk support & classes via Digital Leaders program at Noosaville & Cooroy Libraries Full Court Press 
+
+Hub 
+Members 
+AI
+Upskilling AI Startup 
+Mentoring Build 
+embodied AI Learn to 
+Build
+Workshops 
+Talks 
+Residencies 
+Hackathons 
+
+
+Get started with Agents 
+tinyurl.com/hubfeb25 
+
+
+Agents Part 1 
+Tell you about Tokenizer program 
+Share some big ideas for the year 
+Deep dive into agents 
+Hands on with a new tool Week 1 
+
+
+Week 2: Agents Part 2 
+-vibe coding your own tools 
+-connecting other systems 
+Week 3: AI Startup Showcase - Andrew Birt (Upsure) 
+Week 4: Agent buildathon 
+Week 5: Agent show & tell 
+Upcoming 
+
+
+PART ONE 
+ 7 Ideas to Ponder in 2025 
+
+Upstream 
+Downstream 
+
+
+Jensen Huang 
+CEO Nvidia 
+ 
+No Priors Podcast 
+BG2 Podcast Satya Nadella 
+CEO Microsoft 
+ Dwarkesh Podcast 
+BG2 Podcast  Bret Taylor 
+CEO Sierra, Chairman OpenAI 
+Invest Like the Best 
+No Priors Podcast Swim upstream to ﬁnd the sense-makers 
+
+
+- Satya Nadella “AI simultaneously lowers the ﬂoor and raises the ceiling” 
+
+“AI simultaneously lowers the ﬂoor and raises the ceiling” 
+AI reduces the barrier to entry for many 
+ﬁe lds. P eople with less experience or expertise 
+can now accomplish more, thanks to AI tools. E xperts can push beyond what’s currently 
+achievable. T hey can tackle more ambitious 
+projects and pursue more complex goals 
+
+“AI simultaneously lowers the ﬂoor and raises the ceiling” 
+W hat could you build that packages expert-level solutions into user-friendly 
+tools, empower ing anyone to achieve professional outcomes? 
+
+Recursive self-improvement 
+
+When a system enhances its own capabilities, and crucially, improves its 
+own ability to improve itself in subsequent iterations, leading to an 
+accelerating and self-amplifying cycle of progress .  
+The system's improvement mechanism itself becomes more efficient or 
+sophisticated with each iteration, leading to exponential growth in abilities. 
+
+
+
+
+
+When a system enhances its own capabilities, and crucially, improves its 
+own ability to improve itself in subsequent iterations, leading to an 
+accelerating and self-amplifying cycle of progress .  
+The system's improvement mechanism itself becomes more efficient or 
+sophisticated with each iteration, leading to exponential growth in abilities. 
+W hat could you build that packages expert-level solutions into user-friendly 
+tools, empower ing anyone to achieve professional outcomes? 
+
+The 10x Developer 
+
+The 10x Developer Accountant 
+Lawyer 
+Broker
+Creative 
+Admin
+Designer 
+Project Manager 
+CEO/MD 
+
+The 10x Developer Accountant 
+Lawyer 
+Broker
+Creative 
+Admin
+Designer 
+Project Manager 
+CEO/MD W hat 1x job category 
+could you make a 10x 
+w ith AI? 
+
+
+
+Read it asap 
+
+
+
+
+
+
+
+
+W hat labour-intensive services could you turn into software? 
+
+
+
+PART TWO 
+A change to how we work 
+
+
+
+
+
+
+
+
+
+
+
+Knowledge 
+WorkKnowledge 
+Worker 
+Y OU 
+
+
+Knowledge 
+WorkKnowledge 
+Worker 
+Notes
+Proposals Budgets 
+Plans Quotes Reports 
+Invoices Presentations Emails
+CodeMessages Research Tickets 
+PostsCampaigns VideosAnalysis 
+Updates 
+A rtefacts 
+Y OU 
+
+Knowledge 
+WorkKnowledge 
+Worker 
+Notes
+Proposals Budgets 
+Plans Quotes Reports 
+Invoices Presentations Emails
+CodeMessages Research Tickets 
+PostsCampaigns VideosAnalysis 
+Updates 
+Office
+IDEEmail
+SaaSMessaging Desktop Apps 
+WikiBrowser 
+T ools 
+A rtefacts 
+Y OU 
+
+Knowledge 
+WorkKnowledge 
+Worker 
+Notes
+Proposals Budgets 
+Plans Quotes Reports 
+Invoices Presentations Emails
+CodeMessages Research Tickets 
+Posts Campaigns VideosAnalysis 
+Updates Office
+IDEEmail
+SaaSMessaging Desktop Apps 
+WikiBrowser 
+Agent with T ools 
+A rtefacts 
+Knowledge 
+Worker 
+Y OU A I Taste GoalsInstruction Orchestration 
+Curation 
+Oversight Priorities Judgement Oversight Ideas Evaluation 
+Orchestration 
+
+Knowledge 
+WorkNotes
+Proposals Budgets 
+Plans Quotes Reports 
+Invoices Presentations Emails
+CodeMessages Research Tickets 
+Posts Campaigns VideosAnalysis 
+Updates 
+A rtefacts 
+Knowledge 
+Worker 
+Y OU Taste GoalsInstruction Orchestration 
+Curation 
+Oversight Priorities Judgement Oversight Ideas Evaluation 
+Orchestration 
+Knowledge 
+Workers Agents with T ools 
+
+AgentK n o w l e d g e 
+I n s t r u c t i o n s T o o l s 
+E v a l ua t i o n s Prompting C uration 
+Vibe Coding 
+T aste 
+
+
+PART THREE 
+How do Agents actually work? 
+
+LLM (AI) prompt 
+completion 
+
+{
+  "model": "gpt-4o", 
+  "messages": [ 
+    { 
+      "role": "system", 
+      "content": "You are a helpful assistant." 
+    }, 
+    { 
+      "role": "user", 
+      "content": "What is the capital of Australia" 
+    } 
+    { 
+      "role": "assistant", 
+      "content": "Canberra" 
+    } 
+  ]
+}
+
+
+{
+  "id": "chatcmpl-123", 
+  "object": "chat.completion", 
+  "created": 1708836000, 
+  "model": "gpt-4o", 
+  "choices": [ 
+    { 
+      "index": 0, 
+      "message": { 
+        "role": "assistant", 
+        "content": "The capital of Australia is Canberra." 
+      }, 
+      "finish_reason": "stop" 
+    } 
+  ]
+}
+
+
+Basic Chatbot Chatbot with tools Autonomous Agent 
+
+{
+  "model": "gpt-4o", 
+  "messages": [ 
+    { 
+      "role": "system", 
+      "content": "You are a helpful assistant" 
+    }, 
+    { 
+      "role": "user", 
+      "content": "What's the weather like in Sydney today?" 
+    } 
+  ], 
+  "tools": [ 
+    { 
+      "type": "function", 
+      "function": { 
+        "name": "get_weather", 
+        "description": "Fetches the current weather for a given location.", 
+        "parameters": { 
+          "type": "object", 
+          "properties": { 
+            "location": { 
+              "type": "string", 
+              "description": "The name of the city or region to fetch the weather for." 
+            } 
+          }, 
+          "required": ["location"] 
+        } 
+      } 
+    } 
+  ], 
+  "tool_choice": "auto" 
+}
+
+
+{
+  "id": "chatcmpl-456", 
+  "object": "chat.completion", 
+  "created": 1708836200, 
+  "model": "gpt-4o", 
+  "choices": [ 
+    { 
+      "index": 0, 
+      "message": { 
+        "role": "assistant", 
+        "content": null, 
+        "tool_calls": [ 
+          { 
+            "id": "toolcall-789", 
+            "type": "function", 
+            "function": { 
+              "name": "get_weather", 
+              "arguments": { 
+                "location": "Sydney" 
+              } 
+            } 
+          } 
+        ] 
+      }, 
+      "finish_reason": "tool_calls" 
+    } 
+  ]
+}
+
+
+LLM (AI) prompt 
+completion 
+Get weather 
+Weather U se the weather tool 
+
+Basic Chatbot Chatbot with a tool Autonomous Agent 
+
+AI Agent Loop 
+Use Tool? Run Tool Observe 
+outputs 
+Run 
+another tool 
+Observe 
+outputs 
+Run 
+another tool Observe 
+outputs End loop Chat 
+
+Basic Chatbot Chatbot with a tool Autonomous Agent 
+
+
+LLM (AI) prompt 
+completion 
+Email
+SaaS Browser Messaging 
+
+LLM (AI) prompt 
+completion 
+Email
+SaaS Browser Messaging 
+
+LLM (AI) prompt 
+completion 
+Email
+SaaS Browser Messaging Knowledge 
+
+LLM (AI) prompt 
+completion 
+Email
+SaaS Browser Messaging 
+Knowledge 
+Notes
+Proposals Budgets 
+Plans Quotes Reports 
+Invoices Presentations Emails
+CodeMessages Research Tickets 
+Posts Campaigns VideosAnalysis 
+Updates 
+
+LLM (AI) prompt 
+completion 
+Email
+SaaS Browser Messaging 
+Knowledge 
+Notes
+Proposals Budgets 
+Plans Quotes Reports 
+Invoices Presentations Emails
+CodeMessages Research Tickets 
+Posts Campaigns VideosAnalysis 
+Updates Taste GoalsInstruction Orchestration 
+Curation 
+Oversight Priorities Judgement Oversight Ideas Evaluation 
+
+PART FOUR 
+Building Your Agent Team 
+
+Great, you are a 
+user of AI 
+Along with 400m monthly users 
+
+It’s time to become 
+a builder with AI 
+Build the kno wledge worker agent to do 
+your knowledge work 
+Build an agent to do other knowledge 
+worker’s work 
+T urn labour into software 
+
+Agent Workbench 
+F or doing all of your knowledge work 
+
+What is Cursor? 
+
+
+Cursor: Fastest growing SaaS of all time 
+R ecursive self-improvement ? 
+
+What is an IDE? 
+I ntegrated D evelopment Environment 
+
+Recursive self-improvement 
+AI Coding tools made with AI Coding tools 
+Small teams 
+Huge $rev per headcount 
+
+Much of the economic value we create involves editing text with an app Editing Text aka ‘knowledge work’ 
+Ms Word 
+Proposals, 
+Memos, Plans, 
+Reports, Minutes 
+.docx ; .doc; .rtf 
+Documents 
+File types Text Editing 
+App
+Acrobat 
+Contracts, 
+Brochures, 
+Magazines 
+.pdf ﬁles Ms Excel 
+Budgets, 
+Accounts, 
+Projects, Analysis 
+.xls ﬁles Ms Outlook 
+Emails
+.eml ﬁles 
+
+Making software also involves editing text with an app Coding 
+IDE App 
+Python, C++, PHP, Ruby, 
+Javascript, Typescript, 
+HTML, CSS 
+.py, .js, .tsx, etc 
+Documents 
+File types Text Editing 
+App
+
+
+File Explorer Text Editor 
+Terminal 
+
+Manage Files Write Code 
+Run Code & Observe outputs 
+
+Manage Files Edit Code 
+Run Code & Observe outputs 
+
+Manage Files Edit Code 
+Run Code & Observe outputs 
+
+
+
+
+
+Knowledge 
+workers 
+All the work 
+apps you 
+currently use 
+
+Knowledge 
+workers 
+All the work 
+apps you 
+currently use An IDE with a 
+coding agent 
+
+Knowledge 
+workers 
+All the work 
+apps you 
+currently use A workbench with 
+a powerful 
+orchestration 
+agent
+
+Developers Inevitably 
+Daily agent app 
+launches 
+(distractions) 
+
+AI-Assisted Work 
+Copy & paste from ChatGPT 
+2023 2024
+Integrated AI Chat 2025
+AI Agent 
+
+Manage Files Write Code 
+Run Code AI Chat 
+
+Manage Files Write Code 
+Run Code AI Agent 
+Wr ite and 
+Edit code 
+
+Manage Files Write Code 
+Run Code AI Agent 
+Create, m ove, 
+rename, delete 
+ﬁles 
+
+Manage Files Write Code 
+Run Code AI Agent 
+R un code, install packages, 
+observe outputs 
+
+AI Agent Loop 
+Use Tool? Run Tool Observe 
+outputs 
+Run 
+another tool 
+Observe 
+outputs 
+Run 
+another tool Observe 
+outputs End loop Chat 
+
+
+
+AI Coding Agents 
+Create file Write code Run code 
+Observe 
+outputs 
+Edit code 
+Run code Observe 
+outputs End loop Chat 
+
+“Work” in 2025 
+
+Keys to working successfully with AI Agents 
+Managing 
+Context Clear 
+Communication Backwards 
+compatibility 
+Cursor “rules” 
+Readme’s 
+PRD’s
+Progress tracking etc 
+Commenting/doc strings Regular commits 
+Frequent branching 
+Restoring checkpoints 
+Dropbox ﬁle history 
+Api’s
+Agent-based testing Small & modular 
+More, shorter chats 
+Screenshots 
+Attaching ﬁles 
+Summarising progress 
+
+Detailed Tour of Cursor 
+
+
+Demo of Working with Cursor 
+K n o w l e d g e I n s t r u c t i o n s T o o l s E v a l ua t i o n s 
+
+ABOUT ME: 
+My name is Chris Boden. My job is to run the Peregian Digital Hub, an environment for people building technology companies, located in Peregian Beach - a suburb of 
+Noosa. The Hub is owned and operated by the Noosa Council and its purpose is to catalyse the development of a vibrant tech ecosystem. 
+ABOUT YOU: 
+You are an expert Python programming assistant in VSCode on MacOS that primarily focuses on producing clear, readable python code. You have deep expertise 
+building full stack apps and working with LLM API's. Given that you write most of the code, you should never refer to ‘your code’, at best it should be our code. If bugs it 
+should be my code. 
+Think of my skills as a product manager and a coding newbie that relies entirely on you to produce perfect code that is self-explanatory and just works. 
+You are a genius at reasoning. You start every task by taking a deep breath, carefully reading, then re-reading the user's inputs and any relevant code or 
+documentation. 
+You then write correct, best practice, DRY principle (Don’t Repeat Yourself), bug free, fully functional and working code. Prioritize code that’s easy to read and maintain. 
+Ensure code is complete! Verify thoroughly finalized.` 
+When in doubt, confirm, then write code! You ALWAYS request additional context from the user when you require it rather than winging it. 
+Help me keep track of whether code is working by using termcolor to print the key steps. Have informative error printing 
+Always use try except blocks with descriptive prints where necessary. 
+Let's implement every project with separation of concerns in mind 
+Be concise. Minimize any other prose. Use extensive commenting and docstrings in the code. 
+When outputting code blocks, include a # or // file name comment prior to the block, with a few lines before and after the modification. This helps meidentify where to 
+make changes and preserves the python indentation. 
+If you have changes to a section with multiple blocks that are not contiguous in the code, rather provide the full code for that section. 
+Stick to the current architecture choices unless the user suggests a new method. If you need clarification on any part of the task, ask for more information before 
+proceeding with the implementation. Example: Rules with AI 
+
+Understanding context windows 
+A n AI Agent’s ‘memory’ 
+
+Chat history 
+a
+b
+c
+d
+At the start of a conversation, all messages can be contained 
+w ithin context window = perfect recall 
+
+a
+b
+c
+d
+e
+f
+8,000 
+tokens Chat history 
+Context window At some point, chat history uses up fu ll context window 
+
+
+Chat history 
+a
+b
+c
+d
+e
+f
+g
+h
+I
+j
+k
+8,000 
+tokens 
+Context window Earlier messages start to get p ushed outside of context window, 
+perhaps summarised into very short snippets that lose detail 
+
+
+Chat history 
+a
+b
+c
+d
+e
+f
+g
+h
+I
+j
+k
+8,000 
+tokens 
+Context window Forgotten A s previous messages move further into history they get ‘forgotten’, often 
+p ushed out by big blocks of text you paste or docs or long answers 
+
+
+Example: Cursor Rules 
+Detailed guide to cursor rules 
+For this project we are building in pure html, js, css. You must always check docs/learnings.md and 
+docs/PRD.md and docs/plan.md at the start of any conversation about this project. These files 
+contain critical project context and must be updated with any changes. 
+Cursor rules directory 
+PRD sample 
+Rule for using openrouter for LLM API 
+
+
+Read the full Cursor Composer prompt, here
+
+The demo repo from the session 
+https://github.com/chrisboden/cfbfeb25 
+
+Resources 
+
+
+
+
+
+
+Cursor rules directory 
+How Cursor project rules work - link
+Managing Cursor PRD docsCursor resources 
+
+
+
+
+
+
+Jason Zhou cursor intro video 
+Guide to pair programming with Cursor 
+Follow: echo.hive  on X
+Follow: Riley Brown  on XUseful links 
+
+
+Cline - the open source Cursor 
+Repo prompt  - macOS native app 
+Many others: Replit, Aider, Windsurf , Bolt, V0, 
+Github Copilot , Lovable , DevinOther Interesting Projects 
+
+
+https://x.com/daniel_mac8/status/1
+871372159748079893 
+
+
+
+
+
+AI Coding Tutor 
+(Cursor rule) 
+
+
+
+tinyurl.com/t ok eniz er25 
+What to learn more AI skills? 
+
